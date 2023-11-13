@@ -25,7 +25,7 @@ function start_feature(plugin, feature) {
   document.getElementById("feature_button_"+feature).disabled = true;
   $.getJSON('plugins/'+plugin+'/'+feature+'?data='+arg1, function(data) {
     console.log(data);
-    document.getElementById("results").innerHTML = '<code>>'+plugin+'/'+feature+' '+arg1+'\n'+data['pretty']+'</code>\n\n'+document.getElementById("results").innerHTML
+    document.getElementById("results").innerHTML = '<code class="language-bash">>>'+plugin+'/'+feature+' '+arg1+'\n'+data['pretty']+'</code>\n\n'+document.getElementById("results").innerHTML
     // document.getElementById("results").scrollTop = document.getElementById("results").scrollHeight;
     hljs.highlightAll();
     document.getElementById("feature_button_"+feature).disabled = false

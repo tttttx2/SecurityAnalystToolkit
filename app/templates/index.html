@@ -6,7 +6,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>hljs.highlightAll();</script>
+
+
+
+
+
 
 
     <meta charset="utf-8">
@@ -130,6 +136,20 @@
           min-height: 100%;
           height: 100%;
       }
+
+      @media print {
+        body {
+          visibility: hidden;
+        }
+        .section-to-print {
+          visibility: visible;
+          overflow:visible;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+}
+
     </style>
 
     
@@ -153,7 +173,7 @@
       </symbol>
     </svg>
 
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+<!--    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
       <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
               id="bd-theme"
               type="button"
@@ -187,7 +207,7 @@
         </li>
       </ul>
     </div>
-
+-->
     
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -254,7 +274,7 @@
 
 
 <div class="container-fluid d-flex flex-column vh-100 overflow-hidden">
-    <div class="row flex-grow-1 overflow-hidden">
+    <div class="row flex-grow-1 overflow-hidden py-2">
     <div class="col-2 mh-100 overflow-auto py-2" style="width: 280px;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
        <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -272,6 +292,10 @@
                   <div id="input" class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="" aria-label="Recipient's username" aria-describedby="arg1-button" id="arg1">
                     <button class="btn btn-outline-secondary" type="button" id="arg1-button">RUN All</button>
+                    <button class="btn btn-outline-secondary" type="button" id="clear" onclick="document.getElementById('results').innerHTML=''">clear</button>
+                    <button class="btn btn-outline-secondary" type="button" id="clear" onclick="html2pdf().set({  pagebreak: { after: '.hljs' }
+, filename:'SAT-export.pdf'}).from(document.getElementById('results')).save()">SAVE</button>
+
                   </div>
                 </div>
             </div>
@@ -281,15 +305,15 @@
                     <div id="content" class="d-grid gap-1"></div>
                   </div>
                   <div class="col-11 ps-5 mh-100 overflow-auto py-2">
-                    <pre id="results"></pre>
+                    <pre class="section-to-print" id="results"></pre>
                   </div>
 
             </div>
         </div>
     </div>
-    <div class="row flex-shrink-0 bg-light">
+    <div class="row flex-shrink-0">
         <div class="col-12 py-1">
-            <p>Footer ...</p>
+            <p>Security Analyst Toolkit - <a href="https://github.com/tttttx2/SecurityAnalystToolkit">github.com/tttttx2/SecurityAnalystToolkit</a></p>
         </div>
     </div>
 </div>
