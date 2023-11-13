@@ -32,5 +32,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: main
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: tttttx2/securityanalysttoolkit:main
