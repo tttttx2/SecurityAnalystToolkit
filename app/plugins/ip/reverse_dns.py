@@ -1,8 +1,7 @@
 import json
-import whois
+
 
 def run(ip):
-    w = whois.whois(ip)
     response = {'raw':'raw text', 'pretty':'pretty text for gui'}
-    response["pretty"]=w.text
+    response["pretty"]+=" from reverse_dns"
     return json.dumps(response)

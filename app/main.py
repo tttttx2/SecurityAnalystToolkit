@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import glob
 import json
 import sys
@@ -14,17 +14,17 @@ app = Flask(__name__)
 
 @app.route('/')
 def base():
-    return "SAT"
+    return render_template('index.html')
 
 @app.route('/plugins')
 def list_plugins():
-    plugin_dirss = [i.split('/')[-2] for i in glob.glob("/app/plugins/*/", recursive=False)]
+    plugin_dirs = [i.split('/')[-2] for i in glob.glob("/app/plugins/*/", recursive=False)]
     return json.dumps(plugin_dirs)
 
 @app.route('/plugins/<path:plugin>')
 def list_plugin_features(plugin):
-    features = [i.split('/')[-1].split('.')[-2] for i in glob.glob("/app/plugins/{}/*.py".format(plugin), recursive=False)]
-    return json.dumps(features)
+    feature_files = [i.split('/')[-1].split('.')[-2] for i in glob.glob("/app/plugins/{}/*.py".format(plugin), recursive=False)]
+    return json.dumps(feature_files)
 
 @app.route('/plugins/<path:plugin>/<path:feature>')
 def exec_feature(plugin,feature):
