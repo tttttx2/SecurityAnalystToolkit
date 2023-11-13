@@ -3,7 +3,7 @@ import dns.resolver,dns.reversename
 
 
 def run(ip):
-    response = {'raw':'raw text', 'pretty':'pretty text for gui'}
+    response = {'raw':'', 'pretty':''}
 
     try:
         reverse_dns = '  \n'.join([str(i) for i in dns.resolver.resolve(dns.reversename.from_address(ip), "PTR")])

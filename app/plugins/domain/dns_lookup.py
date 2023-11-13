@@ -3,7 +3,7 @@ import dns.resolver,dns.reversename
 
 
 def run(domain):
-    response = {'raw':'raw text', 'pretty':'pretty text for gui'}
+    response = {'raw':'', 'pretty':''}
 
     try:
         dns_MX = '\n  '.join([i.to_text() for i in dns.resolver.resolve(domain, "MX")])

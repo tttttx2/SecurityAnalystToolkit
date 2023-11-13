@@ -14,7 +14,7 @@ res_cloudflare_family.nameservers = ['1.1.1.2']
 
 
 def run(domain):
-    response = {'raw':'raw text', 'pretty':'pretty text for gui'}
+    response = {'raw':'', 'pretty':''}
 
     try:
         dns_local = '\n  '.join([i.to_text() for i in res_local.resolve(domain, "A")])
