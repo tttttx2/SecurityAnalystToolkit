@@ -2,7 +2,9 @@ name: Publish current development image from main branch
 
 on:
   push:
-    types: [main]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   push_to_registry:
