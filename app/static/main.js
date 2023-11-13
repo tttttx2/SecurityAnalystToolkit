@@ -2,8 +2,9 @@ $.getJSON('plugins', function(data) {
   console.log(data);
   data.forEach((element) => {
     document.getElementById("navbar").innerHTML +='<li class="nav-item">\n<a href="#'+element+'" id="nav_item_'+element+'" class="nav-link text-white" aria-current="page" onclick="load_content(\''+element+'\')"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>'+element+'</a></li>'
+
   });
-});
+}).done(function () {load_content(window.location.hash.replace("#", ""))});
 
 
 function load_content(plugin) {
@@ -21,6 +22,7 @@ function start_feature(plugin, feature) {
   arg1 = document.getElementById('arg1').value
   if (arg1 == ''){
     alert("Please enter something in the input field on top.")
+    return;
   }
   document.getElementById("feature_button_"+feature).disabled = true;
   $.getJSON('plugins/'+plugin+'/'+feature+'?data='+arg1, function(data) {
