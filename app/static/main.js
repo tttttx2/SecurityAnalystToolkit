@@ -1,21 +1,23 @@
 $.getJSON('plugins', function(data) {
   console.log(data);
   data.forEach((element) => {
-    document.getElementById("navbar").innerHTML +='<li class="nav-item">\n<a href="#'+element+'" id="nav_item_'+element+'" class="nav-link text-white" aria-current="page" onclick="load_content(\''+element+'\')"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>'+element+'</a></li>'
-
+    document.getElementById("navbar").innerHTML +='<a href="#'+element+'" id="nav_item_'+element+'" class="p-2 border-2 border-danger sat-plugins" onclick="load_content(\''+element+'\')">'+element+'</a>'
   });
 }).done(function () {load_content(window.location.hash.replace("#", ""))});
 
 
 function load_content(plugin) {
   $.getJSON('plugins/'+plugin, function(data) {
-    console.log(data);
-    document.getElementById("content").innerHTML = ''
+    // console.log(data);
+    document.getElementById("sidebar").innerHTML = ''
     data.forEach((element) => {
-      document.getElementById("content").innerHTML += '<button onclick="start_feature(\''+plugin+'\', \''+element+'\')" class="btn btn-primary p-2" id="feature_button_'+element+'" type="button">'+element+'</button><br>'
+      document.getElementById("sidebar").innerHTML += '<button onclick="start_feature(\''+plugin+'\', \''+element+'\')" class="btn btn-primary p-2 mt-1" id="feature_button_'+element+'" type="button">'+element+'</button><br>'
     });
-    document.getElementById("content").innerHTML += ''
+    document.getElementById("sidebar").innerHTML += ''
+    $("#navbar > .sat-plugins").removeClass("border-bottom")
+    $("#nav_item_"+plugin).addClass("border-bottom");
   });
+
 }
 
 function start_feature(plugin, feature) {
